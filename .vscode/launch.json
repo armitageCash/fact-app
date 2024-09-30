@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "fact_app (debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "deviceId": "chrome"  // Para lanzar la aplicación en Chrome
+        },
+        {
+            "name": "fact_app (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "deviceId": "chrome"  // Para lanzar la aplicación en Chrome
+        },
+        {
+            "name": "fact_app (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "deviceId": "chrome"  // Para lanzar la aplicación en Chrome
+        }
+    ]
+}
