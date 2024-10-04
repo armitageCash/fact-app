@@ -13,11 +13,11 @@ class MenuDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             decoration: BoxDecoration(
-              image: DecorationImage(
+              /*image: DecorationImage(
                 image: AssetImage(
                     'images/logo/logo.png'), // Ruta correcta del asset
                 fit: BoxFit.cover, // Ajustar la imagen al fondo
-              ),
+              ),*/
               color: Colors.blue, // Esto es opcional si la imagen cubre todo
             ),
             child: Column(

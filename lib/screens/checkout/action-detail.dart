@@ -82,6 +82,10 @@ class _ActionDetailsState extends State<ActionDetails> {
     super.dispose();
   }
 
+  isAdmin() {
+    return Provider.of<UserProvider>(context, listen: false)!.user!.isAdmin();
+  }
+
   Future<ActionCompany?> fetchActionDetails(String actionId) async {
     User? user = Provider.of<UserProvider>(context, listen: false).user;
     String? jwt = Provider.of<UserProvider>(context, listen: false).jwtToken;
@@ -150,6 +154,8 @@ class _ActionDetailsState extends State<ActionDetails> {
                       CustomCheckbox(
                         labelText: 'Insertar Arqueos',
                         value: insertarArqueos ?? false,
+                        style:
+                            (insertarArqueos ?? false) ? "danger" : "success",
                         onChanged: (bool? newValue) {
                           if (newValue != null && !newValue) {
                             return setState(() {
@@ -174,6 +180,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                       CustomCheckbox(
                         labelText: 'Ejecutar Acción',
                         value: ejecutarAccion ?? false,
+                        style: (ejecutarAccion ?? false) ? "danger" : "success",
                         onChanged: (bool? newValue) {
                           setState(() {
                             ejecutarAccion = newValue ?? false;
@@ -195,6 +202,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                       CustomCheckbox(
                         labelText: 'Comparar Ventas',
                         value: compararVentas ?? false,
+                        style: (compararVentas ?? false) ? "danger" : "success",
                         onChanged: (bool? newValue) {
                           setState(() {
                             compararVentas = newValue ?? false;
@@ -240,6 +248,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                       CustomCheckbox(
                         labelText: 'Accion 1',
                         value: accion1 ?? false,
+                        style: (accion1 ?? false) ? "danger" : "success",
                         onChanged: (bool? newValue) {
                           setState(() {
                             accion1 = newValue ?? false;
@@ -250,6 +259,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                       CustomCheckbox(
                         labelText: 'Accion 2',
                         value: accion2 ?? false,
+                        style: (accion2 ?? false) ? "danger" : "success",
                         onChanged: (bool? newValue) {
                           setState(() {
                             accion2 = newValue ?? false;
@@ -260,6 +270,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                       CustomCheckbox(
                         labelText: 'Accion 3',
                         value: accion3 ?? false,
+                        style: (accion3 ?? false) ? "danger" : "success",
                         onChanged: (bool? newValue) {
                           setState(() {
                             accion3 = newValue ?? false;
@@ -299,6 +310,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                       CustomCheckbox(
                         labelText: 'Estado',
                         value: estado ?? false,
+                        style: (estado ?? false) ? "danger" : "success",
                         onChanged: (bool? newValue) {
                           setState(() {
                             estado = newValue ?? false;
@@ -329,6 +341,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                       CustomCheckbox(
                         labelText: 'Auditar',
                         value: auditar ?? false,
+                        style: (auditar ?? false) ? "danger" : "success",
                         onChanged: (bool? newValue) {
                           setState(() {
                             auditar = newValue ?? false;
@@ -337,6 +350,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                       ),
                       const Spacing(orientation: "horizontal", size: 20),
                       Button(
+                        isEnabled: !isAdmin(),
                         isLoading: _loading,
                         label: "Actualizar",
                         onPressed: () async {

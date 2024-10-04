@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fact_app/components/modal/modal.dart';
 import 'package:fact_app/config/config.dart';
 import 'package:fact_app/types/action/action.dart';
 import 'package:flutter/widgets.dart';

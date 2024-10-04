@@ -5,6 +5,7 @@ class Connection {
   final String conPrefijo;
   final int conFacpendientes;
   final String ultimaconexion;
+  final String? log;
 
   Connection({
     required this.id,
@@ -13,6 +14,7 @@ class Connection {
     required this.conPrefijo,
     required this.conFacpendientes,
     required this.ultimaconexion,
+    this.log,
   });
 
   // Factory constructor to create an instance from JSON
@@ -24,6 +26,7 @@ class Connection {
       conPrefijo: json['con_Prefijo'],
       conFacpendientes: json['con_Facpendientes'],
       ultimaconexion: json['Ultimaconexion'],
+      log: json['Log'] ?? '',
     );
   }
 
@@ -36,6 +39,7 @@ class Connection {
       'con_Prefijo': conPrefijo,
       'con_Facpendientes': conFacpendientes,
       'Ultimaconexion': ultimaconexion,
+      'Log': log,
     };
   }
 

@@ -6,6 +6,7 @@ class CustomCheckbox extends StatelessWidget {
   final ValueChanged<bool?>
       onChanged; // Evento para manejar el cambio de estado
   final bool isEnabled; // Si el checkbox está habilitado o no
+  final String style; // El estilo ('success', 'danger', o ninguno)
 
   const CustomCheckbox({
     Key? key,
@@ -13,34 +14,52 @@ class CustomCheckbox extends StatelessWidget {
     required this.value,
     required this.onChanged,
     this.isEnabled = true, // Por defecto el checkbox estará habilitado
+    this.style = '', // Por defecto no hay estilo
   }) : super(key: key);
+
+  Color _getCheckboxColor() {
+    if (!isEnabled) return Colors.grey; // Deshabilitado
+    switch (style) {
+      case 'success':
+        return Colors.green; // Estilo success
+      case 'danger':
+        return Colors.red; // Estilo danger
+      default:
+        return Colors.black; // Estilo predeterminado
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Checkbox(
-          value: value,
-          onChanged: isEnabled
-              ? onChanged
-              : null, // Si está habilitado, ejecuta el evento onChanged
+        Theme(
+          data: Theme.of(context).copyWith(
+            unselectedWidgetColor:
+                _getCheckboxColor(), // Cambia color del borde
+          ),
+          child: Checkbox(
+            value: value,
+            onChanged: isEnabled ? onChanged : null, // Si está habilitado
+            activeColor:
+                _getCheckboxColor(), // Cambia color del ícono al estar seleccionado
+          ),
         ),
         GestureDetector(
           onTap: isEnabled
               ? () {
                   onChanged(
-                      !value); // Cambia el valor del checkbox al hacer clic en el label
+                      !value); // Cambia el valor al hacer clic en el label
                 }
-              : null, // Si no está habilitado, no se podrá hacer clic
+              : null,
           child: Text(
             labelText,
             style: TextStyle(
               fontSize: 16,
               color: isEnabled
-                  ? Colors.black
-                  : Colors
-                      .grey, // Estilo del label cuando está habilitado o deshabilitado
+                  ? _getCheckboxColor()
+                  : Colors.grey, // Cambia el color del texto
             ),
           ),
         ),

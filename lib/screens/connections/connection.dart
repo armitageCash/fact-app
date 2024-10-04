@@ -8,6 +8,7 @@ import 'package:fact_app/types/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_side_menu/flutter_side_menu.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
@@ -89,7 +90,9 @@ class _ConnectionState extends State<Connections> {
                   print("InkWell tapped!");
                 },
               ),*/
-              title: company != null ? Text(company!.razonsocial) : null,
+              title: company != null
+                  ? Text(company!.razonsocial.toLowerCase())
+                  : null,
               shape: const ContinuousRectangleBorder(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),
@@ -103,7 +106,7 @@ class _ConnectionState extends State<Connections> {
               flexibleSpace: FlexibleSpaceBar(
                 title: const Text('Conexiones'),
                 background: Image.asset(
-                  '/images/checkout-image-header.png',
+                  'assets/images/header-image.png',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -115,8 +118,8 @@ class _ConnectionState extends State<Connections> {
                   return ListTile(
                     enableFeedback: true,
                     trailing: const Icon(Icons.arrow_forward),
-                    leading: Image.asset(
-                        "/images/cash-register.png"), // Aquí colocas el ícono
+                    leading: SvgPicture.asset(
+                        "assets/icons/computer-icon.svg"), // Aqu colocas el ícono
                     onTap: () {
                       context.push(
                           "/connections-detail/${connections[index]!.id}");

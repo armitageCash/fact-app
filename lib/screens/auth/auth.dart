@@ -115,7 +115,7 @@ class _MyHomePageState extends State<AuthPage> {
                             children: [
                               Container(
                                 child: Image.asset(
-                                  '/images/logo/logo.png',
+                                  'assets/images/logo/logo.png',
                                   width: 200,
                                   height: 200,
                                 ),

@@ -1,5 +1,6 @@
 import 'package:fact_app/components/buttons/button.dart';
 import 'package:fact_app/components/spacing/spacing.dart';
+import 'package:fact_app/components/textarea/textarea.dart';
 import 'package:fact_app/components/textfield/textfield.dart';
 import 'package:fact_app/controllers/connections/connectionsController.dart';
 import 'package:fact_app/shared/providers/user.dart';
@@ -33,6 +34,7 @@ class _ConnectionDetailsState extends State<ConnectionDetails> {
   String? _conPrefijo = '';
   int? _conFacpendientes = 0;
   String? _ultimaconexion = '';
+  String? _log = '';
 
   // Text controllers
   TextEditingController _idController = TextEditingController();
@@ -41,6 +43,7 @@ class _ConnectionDetailsState extends State<ConnectionDetails> {
   TextEditingController _conPrefijoController = TextEditingController();
   TextEditingController _conFacpendientesController = TextEditingController();
   TextEditingController _ultimaconexionController = TextEditingController();
+  TextEditingController _logController = TextEditingController();
 
   @override
   void initState() {
@@ -50,6 +53,7 @@ class _ConnectionDetailsState extends State<ConnectionDetails> {
     _conPrefijoController.text = _conPrefijo!;
     _conFacpendientesController.text = _conFacpendientes!.toString();
     _ultimaconexionController.text = _ultimaconexion!;
+    _logController.text = _log!;
 
     conenctionFuture = fetchConnectionDetails(widget.connectionId!);
   }
@@ -62,6 +66,7 @@ class _ConnectionDetailsState extends State<ConnectionDetails> {
     _conPrefijoController.dispose();
     _conFacpendientesController.dispose();
     _ultimaconexionController.dispose();
+    _logController.dispose();
     super.dispose();
   }
 
@@ -80,6 +85,7 @@ class _ConnectionDetailsState extends State<ConnectionDetails> {
         _conFacpendientesController.text =
             connection.conFacpendientes.toString();
         _ultimaconexionController.text = connection.ultimaconexion;
+        _logController.text = connection.log ?? "";
       });
 
       return connection;
@@ -125,6 +131,7 @@ class _ConnectionDetailsState extends State<ConnectionDetails> {
               const Spacing(orientation: "horizontal", size: 20),
               CustomTextField(
                 controller: _conNitempresaController,
+                isEnabled: false,
                 labelText: 'NIT Empresa',
                 hintText: 'Ingresa el NIT de la empresa',
                 onChanged: (value) {
@@ -136,6 +143,7 @@ class _ConnectionDetailsState extends State<ConnectionDetails> {
               const Spacing(orientation: "horizontal", size: 20),
               CustomTextField(
                 controller: _conPrefijoController,
+                isEnabled: false,
                 labelText: 'Prefijo',
                 hintText: 'Ingresa el prefijo de la empresa',
                 onChanged: (value) {
@@ -161,11 +169,16 @@ class _ConnectionDetailsState extends State<ConnectionDetails> {
                 controller: _ultimaconexionController,
                 labelText: 'Última Conexión',
                 hintText: 'Ingresa la última fecha de conexión',
-                isEnabled: false,
+              ),
+              const Spacing(orientation: "horizontal", size: 20),
+              CustomTextArea(
+                hintText: 'Log de facturas',
+                controller: _logController,
               ),
               const Spacing(orientation: "horizontal", size: 20),
               Button(
                 label: 'Guardar',
+                isEnabled: false,
                 isLoading: _loading,
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {

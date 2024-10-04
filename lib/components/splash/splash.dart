@@ -1,6 +1,4 @@
-import 'package:fact_app/components/menu/menu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -64,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen>
             child: ScaleTransition(
               scale: _animation,
               child: Image.asset(
-                '/images/logo/logo.png', // Cambia 'logo.png' a tu logo
+                'assets/images/logo/logo.png', // Cambia 'logo.png' a tu logo
                 width: 200,
                 height: 200,
               ),

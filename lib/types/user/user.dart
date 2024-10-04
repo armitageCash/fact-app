@@ -57,4 +57,8 @@ class User {
       'Grupo': grupo,
     };
   }
+
+  bool isAdmin() {
+    return tipo == 4 ? true : false;
+  }
 }
